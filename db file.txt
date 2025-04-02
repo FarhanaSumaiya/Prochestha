@@ -1,0 +1,32 @@
+Create database Prochestha;
+Use Prochestha;
+
+
+Create table User
+(
+U_ID                INT AUTO_INCREMENT PRIMARY KEY ,
+FirstName           VARCHAR(100),
+LastName            VARCHAR(100),
+UserName            VARCHAR(50) UNIQUE,
+Email               VARCHAR(100) UNIQUE,
+Gender              VARCHAR(10),
+Phone               VARCHAR(11) UNIQUE,
+Password            VARCHAR(100)
+);
+
+
+CREATE TABLE Habits (
+    ID             INT AUTO_INCREMENT PRIMARY KEY,
+    User_ID        INT NOT NULL,
+    Title          VARCHAR(255) NOT NULL,
+    Details        TEXT,
+    Created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	Count          INT DEFAULT 0,
+    FOREIGN KEY (User_ID) REFERENCES User(U_ID)
+);
+
+ALTER TABLE Habits ADD COLUMN Last_Click_Date Date;
+
+ALTER TABLE User ADD COLUMN Email VARCHAR(100) UNIQUE;
+
+ALTER TABLE User UPDATE COLUMN UserName VARCHAR(50) UNIQUE;
